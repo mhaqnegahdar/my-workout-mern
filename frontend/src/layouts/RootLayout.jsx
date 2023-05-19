@@ -4,7 +4,7 @@ export const RootLayout = () => {
   return (
     <>
       <NavBar />
-      <main>
+      <main className="pages">
         <Outlet />
       </main>
     </>

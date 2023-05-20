@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
 
 /* layout */
+* {
+  transition: 0.2s ease-out;
+}
 :root {
   --primary: #1aac83;
   --error: #e7195a;
@@ -56,15 +59,30 @@ header a {
   font-size: 0.9em;
   color: #555;
 }
-.workout-details span {
+.workout-details .buttons {
   position: absolute;
   top: 20px;
   right: 20px;
   cursor: pointer;
-  background: #f1f1f1;
-  padding: 6px;
+  display: flex;
+  gap: 1rem;
+}
+
+.workout-details .buttons button {
+  padding: 0.6rem;
+  font-size: 1rem;
   border-radius: 50%;
-  color: #333;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  border-width: 0;
+}
+
+.workout-details .buttons button.delete:hover {
+  color: var(--error);
+}
+
+.workout-details .buttons button.edit:hover {
+  color: var(--primary);
 }
 
 /* new workout form */

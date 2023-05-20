@@ -20,6 +20,15 @@ export const WorkoutsContextProvider = ({ children }) => {
             (workout) => workout._id !== action.payload._id
           ),
         };
+      case "UPDATE_WORKOUT":
+        return {
+          workouts: state.workouts.map((workout) => {
+            if (workout._id === action.payload._id) {
+              workout = action.payload;
+            }
+            return workout;
+          }),
+        };
     }
   };
 

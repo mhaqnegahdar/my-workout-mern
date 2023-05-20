@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 
-const WorkoutForm = () => {
+const WorkoutForm = ({ workout, setEdit }) => {
   const { dispatch } = useWorkoutsContext();
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
@@ -16,7 +16,7 @@ const WorkoutForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Submit
+  // Submit Add
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,14 +43,48 @@ const WorkoutForm = () => {
     }
   };
 
+  // Submit Edit
+  const handleEdit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(
+        `http://localhost:4000/api/workouts/${workout._id}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(formData),
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      );
+      const data = await res.json();
+      if (res.ok) {
+        dispatch({ type: "UPDATE_WORKOUT", payload: data });
+        setEdit(null);
+        setFormData({ title: "", load: "", reps: "" });
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    if (workout) {
+      setFormData({
+        title: workout.title,
+        load: workout.load,
+        reps: workout.reps,
+      });
+    }
+  }, [workout]);
+
   // handle Empty Fields style
   const emptyFieldStyle = (field) => {
     return emptyFields.includes(field) ? "error" : "";
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3 className="create">Add a new Workout</h3>
+    <form onSubmit={workout ? handleEdit : handleSubmit}>
+      <h3 className="create"> {workout ? "Edit " : "Add a new "} Workout</h3>
 
       <label>Exersice Title:</label>
       <input
@@ -79,7 +113,7 @@ const WorkoutForm = () => {
         className={emptyFieldStyle("reps")}
       />
 
-      <button type="submit">Add New</button>
+      <button type="submit">{workout ? "Edit " : "Add New "}</button>
       {error && <div className="error">{error}</div>}
     </form>
   );

@@ -10,7 +10,7 @@ explore the demo [here](https://maxjn-my-workout.vercel.app/)
 - ES6
 - React
 - **MongoDB,Express,Nodejs**
-- **Packages:** mongoose, exptrss, react-icon
+- **Packages:** mongoose, exptrss, react-icon, date-fns
 - **Routing:** react-router-dom
 
 ## Features

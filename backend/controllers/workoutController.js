@@ -79,7 +79,11 @@ const updateWorkout = async (req, res) => {
 
   try {
     if (mongoose.Types.ObjectId.isValid(id)) {
-      const workout = await Workout.findByIdAndUpdate(id, { ...req.body });
+      const workout = await Workout.findByIdAndUpdate(
+        id,
+        { ...req.body },
+        { returnDocument: "after" }
+      );
       res.status(200).json(workout);
     } else {
       return res.status(404).json({ error: "Not Found" });

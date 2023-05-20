@@ -1,11 +1,11 @@
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt, FaEdit } from "react-icons/fa";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 // date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
-const WorkoutCard = ({ workout }) => {
+const WorkoutCard = ({ workout, setEdit }) => {
   const { dispatch } = useWorkoutsContext();
-
+  // handle Delete
   const handleDelete = async () => {
     try {
       const res = await fetch(
@@ -18,6 +18,11 @@ const WorkoutCard = ({ workout }) => {
       }
     } catch (error) {}
   };
+  // handle Edit
+  const handleEdit = async () => {
+    setEdit(workout);
+  };
+
   return (
     <article className="workout-details">
       <h4>{workout.title}</h4>
@@ -32,9 +37,15 @@ const WorkoutCard = ({ workout }) => {
       <p>
         {formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}
       </p>
-      <span onClick={handleDelete}>
-        <FaRegTrashAlt />
-      </span>
+
+      <div className="buttons">
+        <button onClick={handleDelete} className="delete">
+          <FaRegTrashAlt />
+        </button>
+        <button onClick={handleEdit} className="edit">
+          <FaEdit />
+        </button>
+      </div>
     </article>
   );
 };

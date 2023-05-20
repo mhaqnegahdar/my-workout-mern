@@ -4,10 +4,11 @@ import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 const WorkoutForm = () => {
   const { dispatch } = useWorkoutsContext();
   const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
-    load: 0,
-    reps: 0,
+    load: "",
+    reps: "",
   });
 
   // Change
@@ -30,14 +31,21 @@ const WorkoutForm = () => {
       const data = await res.json();
 
       if (res.ok) {
-        setFormData({ title: "", load: 0, reps: 0 });
+        setFormData({ title: "", load: "", reps: "" });
         dispatch({ type: "CREATE_WORKOUT", payload: data });
+        setEmptyFields([]);
       } else {
         setError(data.error);
+        setEmptyFields(data.emptyFields);
       }
     } catch (error) {
       setError(error.message);
     }
+  };
+
+  // handle Empty Fields style
+  const emptyFieldStyle = (field) => {
+    return emptyFields.includes(field) ? "error" : "";
   };
 
   return (
@@ -50,6 +58,7 @@ const WorkoutForm = () => {
         onChange={handleChange}
         name="title"
         value={formData.title}
+        className={emptyFieldStyle("title")}
       />
 
       <label>Exersice Loads:</label>
@@ -58,6 +67,7 @@ const WorkoutForm = () => {
         onChange={handleChange}
         name="load"
         value={formData.load}
+        className={emptyFieldStyle("load")}
       />
 
       <label>Exersice Reps:</label>
@@ -66,6 +76,7 @@ const WorkoutForm = () => {
         onChange={handleChange}
         name="reps"
         value={formData.reps}
+        className={emptyFieldStyle("reps")}
       />
 
       <button type="submit">Add New</button>

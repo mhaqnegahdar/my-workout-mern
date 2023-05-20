@@ -24,6 +24,16 @@ explore the demo [here](https://maxjn-my-workout.vercel.app/)
 
 Install **My Workout** with npm
 
+###### frontend
+
+```shell
+npm install
+
+npm run dev
+```
+
+###### backend
+
 ```shell
 npm install
 

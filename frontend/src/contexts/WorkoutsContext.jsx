@@ -14,6 +14,12 @@ export const WorkoutsContextProvider = ({ children }) => {
         return {
           workouts: action.payload,
         };
+      case "DELETE_WORKOUT":
+        return {
+          workouts: state.workouts.filter(
+            (workout) => workout._id !== action.payload._id
+          ),
+        };
     }
   };
 

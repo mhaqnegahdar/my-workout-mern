@@ -120,3 +120,18 @@ div.error {
 input.error {
   border: 1px solid var(--error);
 }
+
+/* Footer */
+footer p {
+  text-align: center;
+}
+
+footer p a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #333;
+}
+
+footer p a:hover {
+  color: var(--primary);
+}

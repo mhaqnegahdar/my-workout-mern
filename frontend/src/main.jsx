@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { WorkoutsContextProvider } from "./contexts/WorkoutsContext";
+import { AuthContextProvider } from "./contexts/AuthContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <WorkoutsContextProvider>
-      <App />
-    </WorkoutsContextProvider>
+    <AuthContextProvider>
+      <WorkoutsContextProvider>
+        <App />
+      </WorkoutsContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );

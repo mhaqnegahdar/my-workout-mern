@@ -4,16 +4,18 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const workoutRoutes = require("./routes/workouts");
+const userRoutes = require("./routes/users");
 
 // express app
 const app = express();
 
-// Middleware
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
 //routes
 app.use("/api/workouts", workoutRoutes);
+app.use("/api/users", userRoutes);
 
 //connect to database & listen
 mongoose

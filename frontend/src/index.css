@@ -159,3 +159,8 @@ form h3,
 form button {
   text-transform: capitalize;
 }
+
+form button:disabled {
+  background-color: #79a79a;
+  cursor: initial;
+}

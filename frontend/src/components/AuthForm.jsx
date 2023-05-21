@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useSignup } from "../hooks/useSignup";
 
 const AuthForm = ({ type }) => {
-  const [error, setError] = useState(null);
+  const { signup, error, isLoading } = useSignup();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,22 +15,36 @@ const AuthForm = ({ type }) => {
   };
 
   //   handle Submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    await signup(formData.email, formData.password);
   };
   return (
     <form onSubmit={handleSubmit} className={type}>
       <h3>{type}</h3>
 
       <label>Email:</label>
-      <input type="email" name="email" onChange={handleChange} />
+      <input
+        type="email"
+        name="email"
+        onChange={handleChange}
+        value={formData.email}
+      />
 
       <label>Password:</label>
-      <input type="password" name="password" onChange={handleChange} />
+      <input
+        type="password"
+        name="password"
+        onChange={handleChange}
+        value={formData.password}
+      />
 
-      <button type="submit">{type}</button>
+      <button type="submit" disabled={isLoading}>
+        {type}
+      </button>
 
-      {error && <span className="error">{error}</span>}
+      {error && <div className="error">{error}</div>}
     </form>
   );
 };

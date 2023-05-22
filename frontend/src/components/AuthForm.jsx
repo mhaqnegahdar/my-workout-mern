@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
+import { useLogin } from "../hooks/useLogin";
 
 const AuthForm = ({ type }) => {
-  const { signup, error, isLoading } = useSignup();
+  const authAction = type === "login" ? useLogin : useSignup;
+
+  const { login, signup, error, isLoading } = authAction();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -18,7 +21,11 @@ const AuthForm = ({ type }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signup(formData.email, formData.password);
+    if (type === "login") {
+      await login(formData.email, formData.password);
+    } else {
+      await signup(formData.email, formData.password);
+    }
   };
   return (
     <form onSubmit={handleSubmit} className={type}>

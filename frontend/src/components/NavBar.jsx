@@ -1,8 +1,17 @@
 import { NavLink } from "react-router-dom";
 import { useLogout } from "./../hooks/useLogout";
+import { useAuthContext } from "../hooks/useAuthContext";
+import { useEffect } from "react";
+import { getLocalStorage } from "../utils/localstorage";
 
 const NavBar = () => {
   const { logout } = useLogout();
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+    console.log(user);
+    console.log(getLocalStorage("user"));
+  }, [user]);
 
   return (
     <header>

@@ -46,18 +46,18 @@ userSchema.statics.signup = async function (email, password) {
 };
 
 // static login function
-userSchema.statics.login = function (email, password) {
+userSchema.statics.login = async function (email, password) {
   if (!email || !password) {
     throw Error("All the fields must be filled in");
   }
 
-  const user = this.findOne({ email });
+  const user = await this.findOne({ email });
 
   if (!user) {
     throw Error("Incorrect email");
   }
 
-  const match = bcrypt.compare(password, user.password);
+  const match = await bcrypt.compare(password, user.password);
 
   if (!match) {
     throw Error("Incorrect Password");

@@ -32,7 +32,6 @@ const WorkoutForm = ({ workout, setEdit }) => {
         body: JSON.stringify(formData),
         headers: {
           "content-type": "application/json",
-
           Authorization: `Bearer ${user.token}`,
         },
       });

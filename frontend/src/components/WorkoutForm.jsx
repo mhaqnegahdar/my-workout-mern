@@ -13,8 +13,6 @@ const WorkoutForm = ({ workout, setEdit }) => {
     reps: "",
   });
 
-  console.log(user);
-
   // Change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

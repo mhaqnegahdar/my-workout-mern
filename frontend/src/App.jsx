@@ -8,14 +8,38 @@ import Home from "./pages/Home";
 import { RootLayout } from "./layouts/RootLayout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { ProtectedAuthRoute, ProtectedRoute } from "./utils/ProtectedRoutes";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
-      <Route index element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-    </Route>
+    <>
+      <Route path="/" element={<RootLayout />}>
+        <Route
+          index
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <ProtectedAuthRoute>
+              <Login />
+            </ProtectedAuthRoute>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <ProtectedAuthRoute>
+              <Signup />
+            </ProtectedAuthRoute>
+          }
+        />
+      </Route>
+    </>
   )
 );
 

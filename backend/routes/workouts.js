@@ -1,4 +1,5 @@
 const express = require("express");
+const requireAuth = require("../middlewares/requireAuth");
 
 //controller
 const {
@@ -10,23 +11,26 @@ const {
 } = require("../controllers/workoutController");
 
 // instance of the route obj
-const route = express.Router();
+const router = express.Router();
 
 // handling reaquests
 
+// Require Auth for all workouts routes
+router.use(requireAuth);
+
 // GET all workouts
-route.get("/", getWorkouts);
+router.get("/", getWorkouts);
 
 // GET a workout
-route.get("/:id", getWorkout);
+router.get("/:id", getWorkout);
 
 // POST a workout
-route.post("/", addWorkout);
+router.post("/", addWorkout);
 
 // DELETE a workout
-route.delete("/:id", deleteWorkout);
+router.delete("/:id", deleteWorkout);
 
 //UPDATE a workout
-route.patch("/:id", updateWorkout);
+router.patch("/:id", updateWorkout);
 
-module.exports = route;
+module.exports = router;

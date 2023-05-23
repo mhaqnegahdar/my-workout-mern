@@ -29,7 +29,7 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const user = getLocalStorage("user");
 
-    if (user) {
+    if (user.length > 0) {
       dispatch({ type: "LOGIN", payload: user });
     }
   }, []);

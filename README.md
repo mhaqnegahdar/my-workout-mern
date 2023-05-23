@@ -15,6 +15,7 @@ explore the demo [here](https://maxjn-my-workout.vercel.app/)
 
 ## Features
 
+- Authentication
 - Adding workouts
 - deleting workouts
 - updating workouts

@@ -12,11 +12,14 @@ export const useSignup = () => {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:4000/api/users/signup", {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-        headers: { "content-type": "application/json" },
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URI}/api/users/signup`,
+        {
+          method: "POST",
+          body: JSON.stringify({ email, password }),
+          headers: { "content-type": "application/json" },
+        }
+      );
       const data = await res.json();
 
       if (res.ok) {

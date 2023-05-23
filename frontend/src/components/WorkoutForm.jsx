@@ -27,14 +27,17 @@ const WorkoutForm = ({ workout, setEdit }) => {
     }
 
     try {
-      const res = await fetch("http://localhost:4000/api/workouts", {
-        method: "POST",
-        body: JSON.stringify(formData),
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URI}/api/workouts`,
+        {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       const data = await res.json();
 
       if (res.ok) {
@@ -60,7 +63,7 @@ const WorkoutForm = ({ workout, setEdit }) => {
 
     try {
       const res = await fetch(
-        `http://localhost:4000/api/workouts/${workout._id}`,
+        `${import.meta.env.VITE_BACKEND_URI}/api/workouts/${workout._id}`,
         {
           method: "PATCH",
           body: JSON.stringify(formData),

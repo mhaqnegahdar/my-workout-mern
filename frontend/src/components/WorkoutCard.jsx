@@ -14,7 +14,7 @@ const WorkoutCard = ({ workout, setEdit }) => {
     }
     try {
       const res = await fetch(
-        `http://localhost:4000/api/workouts/${workout._id}`,
+        `${import.meta.env.VITE_BACKEND_URI}/api/workouts/${workout._id}`,
         {
           method: "DELETE",
           headers: {

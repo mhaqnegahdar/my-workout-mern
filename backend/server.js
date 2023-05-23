@@ -10,7 +10,11 @@ const userRoutes = require("./routes/users");
 const app = express();
 
 // Middlewares
-app.use(cors());
+const corsOptions = {
+  origin: process.env.FRONTEND_URI, // frontend URI (ReactJS)
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 //routes

@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useAuthContext } from "./../hooks/useAuthContext";
 
 const WorkoutForm = ({ workout, setEdit }) => {
+  const { user } = useAuthContext();
   const { dispatch } = useWorkoutsContext();
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
@@ -11,6 +13,8 @@ const WorkoutForm = ({ workout, setEdit }) => {
     reps: "",
   });
 
+  console.log(user);
+
   // Change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,6 +23,10 @@ const WorkoutForm = ({ workout, setEdit }) => {
   // Submit Add
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (user === null) {
+      setError("You must be logged in");
+      return;
+    }
 
     try {
       const res = await fetch("http://localhost:4000/api/workouts", {
@@ -26,6 +34,8 @@ const WorkoutForm = ({ workout, setEdit }) => {
         body: JSON.stringify(formData),
         headers: {
           "content-type": "application/json",
+
+          Authorization: `Bearer ${user.token}`,
         },
       });
       const data = await res.json();
@@ -46,6 +56,10 @@ const WorkoutForm = ({ workout, setEdit }) => {
   // Submit Edit
   const handleEdit = async (e) => {
     e.preventDefault();
+    if (user === null) {
+      setError("You must be logged in");
+      return;
+    }
 
     try {
       const res = await fetch(
@@ -55,6 +69,7 @@ const WorkoutForm = ({ workout, setEdit }) => {
           body: JSON.stringify(formData),
           headers: {
             "content-type": "application/json",
+            Authorization: `Bearer ${user.token}`,
           },
         }
       );

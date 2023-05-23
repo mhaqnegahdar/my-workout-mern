@@ -2,17 +2,26 @@ import { useEffect, useState } from "react";
 import WorkoutCard from "../components/WorkoutCard";
 import WorkoutForm from "../components/WorkoutForm";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Home = () => {
   //form state
   const [edit, setEdit] = useState(null);
+  const { user } = useAuthContext();
   // manage workouts state globally
   const { workouts, dispatch } = useWorkoutsContext();
   // fetch all the workouts
   useEffect(() => {
     const fetchWorkouts = async () => {
+      if (user === null || user === undefined) {
+        return;
+      }
       try {
-        const res = await fetch("http://localhost:4000/api/workouts");
+        const res = await fetch("http://localhost:4000/api/workouts", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         const data = await res.json();
 
         if (res.ok) {

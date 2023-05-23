@@ -1,16 +1,26 @@
 import { FaRegTrashAlt, FaEdit } from "react-icons/fa";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 // date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 const WorkoutCard = ({ workout, setEdit }) => {
+  const { user } = useAuthContext();
   const { dispatch } = useWorkoutsContext();
   // handle Delete
   const handleDelete = async () => {
+    if (user === null) {
+      return;
+    }
     try {
       const res = await fetch(
         `http://localhost:4000/api/workouts/${workout._id}`,
-        { method: "DELETE" }
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
       );
       const data = await res.json();
       if (res.ok) {
@@ -20,6 +30,9 @@ const WorkoutCard = ({ workout, setEdit }) => {
   };
   // handle Edit
   const handleEdit = async () => {
+    if (user === null) {
+      return;
+    }
     setEdit(workout);
   };
 

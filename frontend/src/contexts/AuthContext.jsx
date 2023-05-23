@@ -1,7 +1,8 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
+import { getLocalStorage } from "../utils/localstorage";
 
 export const AuthContext = createContext();
-
+// reducer
 export const AuthReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
@@ -19,10 +20,19 @@ export const AuthReducer = (state, action) => {
   }
 };
 
+// provider
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, {
     user: null,
   });
+  //Initial Auth status
+  useEffect(() => {
+    const user = getLocalStorage("user");
+
+    if (user) {
+      dispatch({ type: "LOGIN", payload: user });
+    }
+  }, []);
 
   return (
     <AuthContext.Provider value={{ ...state, dispatch }}>

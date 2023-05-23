@@ -17,11 +17,14 @@ const Home = () => {
         return;
       }
       try {
-        const res = await fetch("http://localhost:4000/api/workouts", {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_BACKEND_URI}/api/workouts`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
         const data = await res.json();
 
         if (res.ok) {

@@ -4,6 +4,12 @@ This is a basic MERN project with authentication and crud functionality bootstra
 
 explore the demo [here](https://maxjn-my-workout.vercel.app/)
 
+## Sequelize Addition
+
+Learning sequelize I added a new **backend-sequelize**
+
+explore the demo [here](https://maxjn-my-workout-sequelize.vercel.app/)
+
 ## Technologies
 
 - JSX, Css,
@@ -38,6 +44,14 @@ npm run dev
 ```
 
 ###### backend
+
+```shell
+npm install
+
+npm run dev
+```
+
+###### backend-sequelize
 
 ```shell
 npm install

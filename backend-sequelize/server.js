@@ -29,12 +29,12 @@ app.use(cors(corsOptions));
 
 
 // Routes
-app.use("/api/workouts", workoutRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/workouts", workoutRoutes);
 
 // Listen for requests if connections is ok
 sequelize
-  .sync({ alter: true })
+  .sync()
   .then(async () => {
     try {
       await sequelize.authenticate();
@@ -43,7 +43,7 @@ sequelize
         console.log("Server Is Listening ON Port: ", process.env.PORT);
       });
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   })
   .catch((err) => {

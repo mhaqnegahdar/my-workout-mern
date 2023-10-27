@@ -1,44 +1,48 @@
-const User = require('../models/userModel')
-const validator = require('validator')
-
+const User = require("../models/userModel");
+const validator = require("validator");
+const createToken = require("../../utils/jwtGenerator");
 
 // Login
-const loginUser=async(req,res)=>{
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
 
-    const {email,password} = req.body
+  try {
+    const user = await User.authenticateByEmailAndPassword(email, password);
 
-
-    try {
-        const user = await User.authenticateByEmailAndPassword(email,password)
-
-        if(!user){
-            res.status(403).json({error:'Access Denied'})
-        }
-
-        res.status(200).json(user)
-        
-    } catch (error) {
-        res.status(400).json({error:error.message})
-
+    if (!user) {
+      res.status(403).json({ error: "Access Denied" });
+      return;
     }
-}
+
+    // jwt Token
+    const userToken = createToken(user.id)
+
+    res.status(200).json({email, token: userToken });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
 // Singup
-const signupUser=async(req,res)=>{
+const signupUser = async (req, res) => {
+  const { email, password } = req.body;
 
-    const {email,password} = req.body
+  if (
+    !validator.isStrongPassword(password, { minSymbols: 0, minUppercase: 0 })
+  ) {
+    res.status(400).json({ error: "Weak Password" });
+    return;
+  }
+  try {
+    const user = await User.create({ email, password });
 
-    // if (!validator.isStrongPassword(password)) {
-    //     res.status(400).json({error:'Weak Password'})
-    // }
-    try {
-        const user = await User.create({email,password})
-        
-        res.status(200).json({email,user})
-    } catch (error) {
-        res.status(400).json({error:error.message})
-    }
+    // JWT Token
+    const userToken = createToken(user.id);
 
-}
+    res.status(200).json({ email, token: userToken });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
-module.exports={loginUser,signupUser}
+module.exports = { loginUser, signupUser };

@@ -6,6 +6,8 @@
   "scripts": {
     "install-server": "cd backend && npm install",
     "start-server": "cd backend && node server.js",
+    "install-seq-server": "cd backend-sequelize && npm install",
+    "start-seq-server": "cd backend-sequelize && node server.js",
     "install-frontend": "cd frontend && npm install",
     "build-frontend": "cd frontend && npm run build",
     "start-frontend": "cd frontend && npm run preview",
@@ -13,5 +15,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^9.0.2",
+    "validator": "^13.11.0"
+  }
 }

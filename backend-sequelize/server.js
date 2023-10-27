@@ -17,15 +17,11 @@ const corsOptions = {
 };
 
 // Middlewares
-// -get body
-app.use(express.json());
-// -test middleware
-app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
 // -Cors 
 app.use(cors(corsOptions));
+// -get body
+app.use(express.json());
+
 
 
 // Routes

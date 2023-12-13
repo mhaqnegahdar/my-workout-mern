@@ -10,10 +10,17 @@ Learning sequelize I added a new **backend-sequelize**
 
 explore the demo [here](https://maxjn-my-workout-sequelize.vercel.app/)
 
+## Sequelize TypeScript Addition
+
+Learning sequelize & TypeScript I added a new **backend-sequelize-ts**
+
+explore the demo [here](https://maxjn-my-workout-sequelize-ts.vercel.app/)
+
 ## Technologies
 
 - JSX, Css,
 - ES6
+- TypeScript
 - React
 - **MongoDB,Express,Nodejs**
 - **Packages:** mongoose, exptrss, react-icon, date-fns, bcrypt, validator, JWT
@@ -57,6 +64,19 @@ npm run dev
 npm install
 
 npm run dev
+```
+###### backend-sequelize-ts
+
+```shell
+npm install
+
+npm run dev
+
+# production
+
+npm install 
+npm tsc
+npm start
 ```
 
 ## Installation (Production)

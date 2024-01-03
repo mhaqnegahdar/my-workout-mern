@@ -2,7 +2,7 @@
 
 This is a basic BACKEND project with authentication and crud functionality bootstrapped using **Express**, **NODE**, **TS**, **Sequelize** as the ORM
 
-explore the demo [here](#)
+explore the demo [here](https://maxjn-my-workout-sequelize-ts.vercel.app/)
 
 
 ## Technologies
@@ -11,16 +11,15 @@ explore the demo [here](#)
 - ES6
 - TS
 - **MySQL ,Express,Nodejs**
-- **Packages:** sequelize, exptrss, body-parser, cookie-parser, typescript, ts-node, compression
-
+- **Packages:** sequelize, exptrss, typescript, ts-node
 
 ## Features
 
 - Authentication
-- Adding Users
-- deleting Users
-- updating Users
-- getting Users
+- Adding workouts
+- deleting workouts
+- updating workouts
+- getting workouts
 
 ## Installation (locally)
 
@@ -45,4 +44,4 @@ npm run start
 
 ## Screenshots
 
-![Cover](./cover.png)
+![Cover](../frontend/public/cover.png)

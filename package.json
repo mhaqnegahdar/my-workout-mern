@@ -8,6 +8,8 @@
     "start-server": "cd backend && node server.js",
     "install-seq-server": "cd backend-sequelize && npm install",
     "start-seq-server": "cd backend-sequelize && node server.js",
+    "install-seq-ts-server": "cd backend-sequelize-ts && npm install",
+    "start-seq-ts-server": "cd backend-sequelize-ts && tsc && node ./dist/server.js",
     "install-frontend": "cd frontend && npm install",
     "build-frontend": "cd frontend && npm run build",
     "start-frontend": "cd frontend && npm run preview",

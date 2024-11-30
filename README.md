@@ -16,6 +16,12 @@ Learning sequelize & TypeScript I added a new **backend-sequelize-ts**
 
 explore the demo [here](https://maxjn-my-workout-sequelize-ts.vercel.app/)
 
+## Mongoose TypeScript with Decorators
+
+Learning TypeScript Decorators I added a new **backend-ts-decorator**
+
+explore the demo [here](https://maxjn-my-workout-ts-decorator.vercel.app/)
+
 ## Technologies
 
 - JSX, Css,
@@ -65,6 +71,7 @@ npm install
 
 npm run dev
 ```
+
 ###### backend-sequelize-ts
 
 ```shell
@@ -74,7 +81,7 @@ npm run dev
 
 # production
 
-npm install 
+npm install
 npm tsc
 npm start
 ```

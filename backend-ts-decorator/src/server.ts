@@ -3,6 +3,9 @@ import express from "express";
 
 // Config
 import "./config/logging-config";
+import "reflect-metadata";
+
+// Constants
 import { DB } from "./config/database-config";
 import { SERVER } from "./config/server-config";
 
@@ -10,6 +13,8 @@ import { SERVER } from "./config/server-config";
 import { routeNotFoundHandler } from "./app/middlewares/route-not-found-handler";
 import { corsHandler } from "./app/middlewares/cors-handler";
 import { loggingHandler } from "./app/middlewares/logging-handler";
+import defineRoutes from "./utils/define-routes";
+import { AllRoutes } from "./routes/all-routes";
 
 export const application = express();
 export let httpServer: ReturnType<typeof http.createServer>;
@@ -34,9 +39,7 @@ const Main = () => {
   logging.info("--------------------");
   logging.info("Define Controller Routing");
   logging.info("--------------------");
-  application.get("/healthcheck", (req, res) => {
-    res.status(200).json({ message: "Application is working" });
-  });
+  defineRoutes(AllRoutes, application);
 
   logging.info("------------------------");
   logging.info("Route Not Found");

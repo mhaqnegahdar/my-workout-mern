@@ -1,0 +1,48 @@
+
+### Get workouts
+GET http://localhost:8000/workouts/
+
+### Get single Workout
+GET http://localhost:8000/workouts/asfsdfa
+
+
+### Insert Workout
+POST http://localhost:8000/workouts 
+content-type: application/json
+
+{
+    "title": "My Beautiful Life 2",
+    "reps": 9,
+    "loads": 9
+}
+
+
+
+### Update Workout
+PUT http://localhost:8000/workouts/:id 
+content-type: application/json
+
+{
+    "title": "mhaqnegahdar",
+    "author": "Whdf234dkf"
+}
+
+
+
+
+
+### Delete Workout
+DELETE http://localhost:8000/workouts/sdfaf
+
+
+
+
+### Search Workout
+POST http://localhost:8000/workouts/search 
+content-type: application/json
+
+{
+    "author": { "$regex": "^Mohamad Haqnegahdar" }
+}
+
+

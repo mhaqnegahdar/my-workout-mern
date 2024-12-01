@@ -10,7 +10,6 @@ function defineRoutes(controllers: any[], application: Express) {
       controller
     );
     const baseRoute = Reflect.getMetadata("baseRoute", controller.constructor);
-    logging.log(baseRoute);
 
     const methods = Array.from(routeHandlers.keys());
 

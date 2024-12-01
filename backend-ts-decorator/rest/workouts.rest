@@ -3,7 +3,7 @@
 GET http://localhost:8000/workouts/
 
 ### Get single Workout
-GET http://localhost:8000/workouts/asfsdfa
+GET http://localhost:8000/workouts/674c83e8f5f71568591a0919
 
 
 ### Insert Workout
@@ -11,20 +11,21 @@ POST http://localhost:8000/workouts
 content-type: application/json
 
 {
-    "title": "My Beautiful Life 2",
-    "reps": 9,
-    "loads": 9
+    "title": "Push Ups",
+    "reps": 15,
+    "loads": 4
 }
 
 
 
 ### Update Workout
-PUT http://localhost:8000/workouts/:id 
+PUT http://localhost:8000/workouts/674c83e8f5f71568591a0919
 content-type: application/json
 
 {
-    "title": "mhaqnegahdar",
-    "author": "Whdf234dkf"
+    "title": "Pull Ups",
+    "reps": 3,
+    "loads": 9
 }
 
 
@@ -32,17 +33,9 @@ content-type: application/json
 
 
 ### Delete Workout
-DELETE http://localhost:8000/workouts/sdfaf
+DELETE http://localhost:8000/workouts/674c874489bc4c44a8d0a2b1
 
 
 
-
-### Search Workout
-POST http://localhost:8000/workouts/search 
-content-type: application/json
-
-{
-    "author": { "$regex": "^Mohamad Haqnegahdar" }
-}
 
 

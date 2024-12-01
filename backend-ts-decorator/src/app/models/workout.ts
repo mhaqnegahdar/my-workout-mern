@@ -19,4 +19,4 @@ const workoutSchema = new Schema<WorkoutType>(
   { timestamps: true }
 );
 
-export default model("Workout", workoutSchema);
+export const WorkoutModel=  model("Workout", workoutSchema);

@@ -13,8 +13,12 @@ import { SERVER } from "./config/server-config";
 import { routeNotFoundHandler } from "./app/middlewares/route-not-found-handler";
 import { corsHandler } from "./app/middlewares/cors-handler";
 import { loggingHandler } from "./app/middlewares/logging-handler";
-import defineRoutes from "./utils/define-routes";
+import { declareHandler } from "./app/middlewares/declare-handler";
+
+// Routing
 import { AllRoutes } from "./routes/all-routes";
+import defineRoutes from "./utils/define-routes";
+import mongoose from "mongoose";
 
 export const application = express();
 export let httpServer: ReturnType<typeof http.createServer>;
@@ -29,11 +33,24 @@ const Main = () => {
   logging.info("--------------------");
   logging.info("Database Connection");
   logging.info("--------------------");
+  mongoose
+    .connect(DB.MONGO_CONNECTION, DB.MONGO_OPTIONS)
+    .then((connection) => {
+      logging.info("--------------------");
+      logging.info(`Connected to Mongo: ${connection.version}`);
+      logging.info("--------------------");
+    })
+    .catch((error) => {
+      logging.error("--------------------");
+      logging.error(`Error Connecting to Mongo: ${error}`);
+      logging.error("--------------------");
+    });
 
   logging.info("--------------------");
   logging.info("Logging & Configuration");
   logging.info("--------------------");
   application.use(corsHandler);
+  application.use(declareHandler);
   application.use(loggingHandler);
 
   logging.info("--------------------");

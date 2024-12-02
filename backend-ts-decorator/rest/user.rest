@@ -1,0 +1,26 @@
+### Login
+POST http://localhost:8000/user/signup 
+content-type: application/json
+
+{
+    "email": "maxjn763@gmail.com",
+    "password": "Test@452test"
+}
+
+
+### Signup
+POST http://localhost:8000/user/login 
+content-type: application/json
+
+{
+     "email": "maxjn763@gmail.com",
+    "password": "Mam@1396mam"
+}
+
+### Refresh Token
+POST http://localhost:8000/user/refresh-token 
+content-type: application/json
+
+{
+     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjYjY0Y2YyNmY5Y2YzZjMyZGRjZGQiLCJpYXQiOjE3MzMxNTkwMjMsImV4cCI6MTczMzc2MzgyM30.A1SumAz_PnseScPjE2fc1n7uga_mQifjyt05gl7Euuk"
+}

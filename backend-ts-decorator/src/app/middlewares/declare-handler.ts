@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { Document, DeleteResult, UpdateResult } from "mongoose";
+import { Document, DeleteResult, UpdateResult, ObjectId } from "mongoose";
 
 declare global {
   namespace Express {
@@ -9,6 +9,8 @@ declare global {
       mongoCreate: Document | undefined;
       mongoUpdate: UpdateResult | undefined;
       mongoDelete: DeleteResult | undefined;
+
+      user: { userId: ObjectId } | undefined;
     }
   }
 }
@@ -23,6 +25,8 @@ export function declareHandler(
   req.mongoCreate = undefined;
   req.mongoUpdate = undefined;
   req.mongoDelete = undefined;
+
+  req.user = undefined;
 
   next();
 }

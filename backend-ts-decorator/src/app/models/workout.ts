@@ -1,7 +1,9 @@
-import { model, Schema } from "mongoose";
-import { WorkoutType } from "../../types/wourkout";
+import { Model, model, Schema } from "mongoose";
+import { WorkoutSchemaType } from "../../types/models/wourkout";
 
-const workoutSchema = new Schema<WorkoutType>(
+interface WorkoutModelType extends Model<WorkoutSchemaType> {}
+
+const workoutSchema = new Schema<WorkoutSchemaType>(
   {
     title: {
       type: String,
@@ -19,4 +21,7 @@ const workoutSchema = new Schema<WorkoutType>(
   { timestamps: true }
 );
 
-export const WorkoutModel=  model("Workout", workoutSchema);
+export const WorkoutModel = model<WorkoutSchemaType, WorkoutModelType>(
+  "Workout",
+  workoutSchema
+);

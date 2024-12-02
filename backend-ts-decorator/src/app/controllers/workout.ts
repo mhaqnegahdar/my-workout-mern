@@ -8,7 +8,7 @@ import ValidateObjectId from "../../decorators/validate-objectid";
 import MongoCreate from "../../decorators/mongoose/create";
 
 // Schemas
-import { workoutZod } from "../../types/wourkout";
+import { workoutZod } from "../../types/models/wourkout";
 
 // Models
 import { WorkoutModel } from "../models/workout";

@@ -1,14 +1,20 @@
 
 ### Get workouts
 GET http://localhost:8000/workouts/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjYjY0Y2YyNmY5Y2YzZjMyZGRjZGQiLCJpYXQiOjE3MzMxNTk3NjEsImV4cCI6MTczMzE2MzM2MX0.eoOBADBp780ZaxTjel4wkD2aqlVpg6E4CQZl-Bf9QU4
+
 
 ### Get single Workout
 GET http://localhost:8000/workouts/674c83e8f5f71568591a0919
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjYjY0Y2YyNmY5Y2YzZjMyZGRjZGQiLCJpYXQiOjE3MzMxNTk3NjEsImV4cCI6MTczMzE2MzM2MX0.eoOBADBp780ZaxTjel4wkD2aqlVpg6E4CQZl-Bf9QU4
+
 
 
 ### Insert Workout
 POST http://localhost:8000/workouts 
 content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjYjY0Y2YyNmY5Y2YzZjMyZGRjZGQiLCJpYXQiOjE3MzMxNTk3NjEsImV4cCI6MTczMzE2MzM2MX0.eoOBADBp780ZaxTjel4wkD2aqlVpg6E4CQZl-Bf9QU4
+
 
 {
     "title": "Push Ups",
@@ -21,6 +27,8 @@ content-type: application/json
 ### Update Workout
 PUT http://localhost:8000/workouts/674c83e8f5f71568591a0919
 content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjYjY0Y2YyNmY5Y2YzZjMyZGRjZGQiLCJpYXQiOjE3MzMxNTk3NjEsImV4cCI6MTczMzE2MzM2MX0.eoOBADBp780ZaxTjel4wkD2aqlVpg6E4CQZl-Bf9QU4
+
 
 {
     "title": "Pull Ups",
@@ -34,6 +42,8 @@ content-type: application/json
 
 ### Delete Workout
 DELETE http://localhost:8000/workouts/674c874489bc4c44a8d0a2b1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NzRjYjY0Y2YyNmY5Y2YzZjMyZGRjZGQiLCJpYXQiOjE3MzMxNTk3NjEsImV4cCI6MTczMzE2MzM2MX0.eoOBADBp780ZaxTjel4wkD2aqlVpg6E4CQZl-Bf9QU4
+
 
 
 

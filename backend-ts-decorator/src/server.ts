@@ -14,9 +14,11 @@ import { routeNotFoundHandler } from "./app/middlewares/route-not-found-handler"
 import { corsHandler } from "./app/middlewares/cors-handler";
 import { loggingHandler } from "./app/middlewares/logging-handler";
 import { declareHandler } from "./app/middlewares/declare-handler";
+import { authenticateHandler } from "./app/middlewares/auth-handler";
 
 // Routing
-import { AllRoutes } from "./routes/all-routes";
+import { NonProtectedRoutes } from "./routes/non-protected-routes";
+import { ProtectedRoutes } from "./routes/protected-routes";
 import defineRoutes from "./utils/define-routes";
 import mongoose from "mongoose";
 
@@ -56,7 +58,12 @@ const Main = () => {
   logging.info("--------------------");
   logging.info("Define Controller Routing");
   logging.info("--------------------");
-  defineRoutes(AllRoutes, application);
+  defineRoutes(NonProtectedRoutes, application);
+
+  // Auth Middleware
+  application.use(authenticateHandler);
+
+  defineRoutes(ProtectedRoutes, application);
 
   logging.info("------------------------");
   logging.info("Route Not Found");

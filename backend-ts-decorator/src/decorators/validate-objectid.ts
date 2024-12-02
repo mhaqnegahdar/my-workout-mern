@@ -12,7 +12,7 @@ function ValidateObjectId(
     res: Response,
     next: NextFunction
   ) {
-    if (!isValidObjectId(req.params.id)) {
+    if (!isValidObjectId(req.params.id) ) {
       logging.error("Invalid Id Parameter");
       res.status(422).json({ error: "Invalid Id Parameter" });
       return;

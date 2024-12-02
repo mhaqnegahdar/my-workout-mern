@@ -15,4 +15,4 @@ export const workoutZod = z.object({
   }),
 });
 
-export type WorkoutType = z.infer<typeof workoutZod>
+export type WorkoutSchemaType = z.infer<typeof workoutZod>

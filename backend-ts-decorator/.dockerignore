@@ -1,0 +1,38 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+build/
+
+# Testing
+coverage/
+
+# Miscellaneous system files
+.DS_Store
+
+# Environment files
+.env
+.env.*
+!*.env.example  # Allow example env files to remain for documentation purposes
+
+# Logs
+*.log
+
+# Documentation
+docs/
+
+# Configuration backups and sensitive data
+**.pem
+**.crt
+**.bak
+
+# IDE and editor settings
+.vstags
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
